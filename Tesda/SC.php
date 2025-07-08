@@ -26,6 +26,9 @@
             </tr>
         </thead>
         <tbody>
+
+
+        // fix this
             <?php 
             require 'config.php';
             $result = $conn->query("SELECT * FROM ris ORDER BY date_requested DESC");
