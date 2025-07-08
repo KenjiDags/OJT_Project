@@ -18,9 +18,9 @@
     <table>
         <thead>
             <tr>
-                <th><i class="fas fa-hashtag"></i> Name</th>
+                <th><i class=""></i> Name</th>
                 <th><i class="fas fa-clipboard-listfa"></i> Description</th>
-                <th><i class="fas fa-user"></i> Stock</th>
+                <th><i class="fas fa-hashtag"></i> Stock No.</th>
                 <th><i class="fas fa-calendar"></i> Date</th>
                 <th><i class="fas fa-cogs"></i> Actions</th>
             </tr>
