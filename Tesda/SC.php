@@ -1,3 +1,5 @@
+<?php include 'sidebar.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,55 +9,39 @@
     <link rel="stylesheet" href="css/styles.css?v=<?= time() ?>">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<body class="ris-page">
+<body class="SC-Page">
 
-
-<?php include 'sidebar.php'; ?>
-
-<div class="content">
-    <h2><i class="fas fa-file-alt"></i> Stock Card (SC)</h2>
+<div class="table_content">
+    <h2> Stock Card (SC)</h2>
 
     <table>
         <thead>
             <tr>
-                <th><i class=""></i> Name</th>
-                <th><i class="fas fa-clipboard-listfa"></i> Description</th>
-                <th><i class="fas fa-hashtag"></i> Stock No.</th>
-                <th><i class="fas fa-calendar"></i> Date</th>
-                <th><i class="fas fa-cogs"></i> Actions</th>
+                <th><i class=""></i> Stock No.</th>
+                <th><i class=""></i> Item</th>
+                <th><i class=""></i> Unit of Measurement</th>
+                <th><i class=""></i> Reorder Point</th>
+                <th><i class=""></i> Actions</th>
             </tr>
         </thead>
         <tbody>
 
 
-        // fix this
             <?php 
             require 'config.php';
-            $result = $conn->query("SELECT * FROM ris ORDER BY date_requested DESC");
-            if ($result && $result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo '<tr>';
-                    echo '<td><strong>' . htmlspecialchars($row['ris_no']) . '</strong></td>';
-                    echo '<td>' . date('M d, Y', strtotime($row['date_requested'])) . '</td>';
-                    echo '<td>' . htmlspecialchars($row['requested_by']) . '</td>';
-                    echo '<td>' . htmlspecialchars($row['purpose']) . '</td>';
-                    echo '<td>
-                        <a href="view_ris.php?ris_id=' . $row["ris_id"] . '" title="View RIS">
-                            <i class="fas fa-eye"></i> View
-                        </a>
-                        <a href="edit_ris.php?ris_id=' . $row["ris_id"] . '" title="Edit RIS">
-                            <i class="fas fa-edit"></i> Edit
-                        </a>
-                        <a href="export_ris.php?ris_id=' . $row["ris_id"] . '" title="Export RIS">
-                            <i class="fas fa-download"></i> Export
-                        </a>
-                        <a href="delete_ris.php?ris_id=' . $row["ris_id"] . '" 
-                           onclick="return confirm(\'Are you sure you want to delete this RIS?\')"
-                           title="Delete RIS">
-                            <i class="fas fa-trash"></i> Delete
-                        </a>
-                    </td>';
-                    echo '</tr>';
+                $sql = "SELECT * FROM items ORDER BY stock_number ASC";
+                $result = $conn->query($sql);            
+                
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr data-id='{$row['item_id']}'>
+                            <td><strong>{$row['stock_number']}</strong></td>
+                            <td>{$row['description']}</td>
+                            <td>{$row['unit']}</td>
+                            <td>{$row['reorder_point']}
+
+                            
+                        </tr>";
                 }
             } else {
                 echo '<tr><td colspan="5">
@@ -69,3 +55,4 @@
 
 </body>
 </html>
+
