@@ -11,7 +11,7 @@
 </head>
 <body class="SC-Page">
 
-<div class="table_content">
+<div class="content">
     <h2> Stock Card (SC)</h2>
 
     <table>
@@ -39,13 +39,21 @@
                             <td>{$row['description']}</td>
                             <td>{$row['unit']}</td>
                             <td>{$row['reorder_point']}
-
+                            <td>
+                                <a href='view_sc.php?item_id=" . $row['stock_number'] . "' title='View SC'>
+                                    <i class='fas fa-eye'></i> View
+                                </a>
+                                <a href='export_sc.php?item_id=" . $row['item_id'] . "' title='Export RIS'>
+                                    <i class='fas fa-download'></i> Export
+                                </a>
+                            
+                            </td>
                             
                         </tr>";
                 }
             } else {
                 echo '<tr><td colspan="5">
-                        <i class="fas fa-inbox"></i> No RIS records found.
+                        <i class="fas fa-inbox"></i> Item not found.
                       </td></tr>';
             }
             ?>
