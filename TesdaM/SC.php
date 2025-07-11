@@ -38,12 +38,12 @@
                             <td><strong>{$row['stock_number']}</strong></td>
                             <td>{$row['description']}</td>
                             <td>{$row['unit']}</td>
-                            <td>{$row['reorder_point']}
+                            <td>{$row['reorder_point']}</td>
                             <td>
-                                <a href='view_sc.php?item_id=" . $row['stock_number'] . "' title='View SC'>
+                                <a href='view_sc.php?item_id={$row['item_id']}' title='View SC'>
                                     <i class='fas fa-eye'></i> View
                                 </a>
-                                <a href='export_sc.php?item_id=" . $row['item_id'] . "' title='Export RIS'>
+                                <a class='scexport' href='export_sc.php?item_id={$row['item_id']}' title='Export SC'>
                                     <i class='fas fa-download'></i> Export
                                 </a>
                             
